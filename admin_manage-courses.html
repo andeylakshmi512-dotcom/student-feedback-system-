@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Manage Courses</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet" />
+</head>
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+      <a class="navbar-brand" href="#">Admin Panel</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#adminNav" aria-controls="adminNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="adminNav">
+        <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="admin_dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin_view-feedback.html">View Feedback</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin_manage-courses.html">Manage Courses</a></li>
+          <li class="nav-item"><a class="nav-link active" href="admin_analysis.html">Feedback Analysis</a></li>
+          <li class="nav-item"><a class="nav-link" href="admin_profile.html">Profile</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Content -->
+  <div class="container my-4">
+    <h1>Manage Courses</h1>
+
+    <form id="courseForm" class="mb-4">
+      <div class="row g-3 align-items-center">
+        <div class="col-md-8">
+          <input type="text" id="courseName" class="form-control" placeholder="Enter course name" required />
+        </div>
+        <div class="col-md-4">
+          <button type="submit" class="btn btn-success w-100">Add Course</button>
+        </div>
+      </div>
+    </form>
+
+    <ul class="list-group" id="courseList">
+      <!-- Courses will appear here -->
+    </ul>
+  </div>
+
+  <script>
+    const courseForm = document.getElementById('courseForm');
+    const courseList = document.getElementById('courseList');
+
+    let courses = ['Bachelor of Technology','Bachelor of Arts in History','Bachelor of Science in Computer Science','Master of Science in Physics','Diploma in Business Management','Chemical Engineering','pharmacy','computer engineering','Elecetrical Engineering','Mechanical Engineering','Civil Engineering','ICT Engineering','Management','Physiotherapy']; // Initial sample courses
+
+    function renderCourses() {
+      courseList.innerHTML = '';
+      courses.forEach((course, idx) => {
+        const li = document.createElement('li');
+        li.className = "list-group-item d-flex justify-content-between align-items-center";
+        li.textContent = course;
+
+        const deleteBtn = document.createElement('button');
+        deleteBtn.className = "btn btn-danger btn-sm";
+        deleteBtn.textContent = 'Delete';
+        deleteBtn.onclick = () => {
+          courses.splice(idx, 1);
+          renderCourses();
+        };
+
+        li.appendChild(deleteBtn);
+        courseList.appendChild(li);
+      });
+    }
+
+    courseForm.addEventListener('submit', function(e) {
+      e.preventDefault();
+      const newCourse = document.getElementById('courseName').value.trim();
+      if (newCourse && !courses.includes(newCourse)) {
+        courses.push(newCourse);
+        renderCourses();
+        courseForm.reset();
+      } else {
+        alert('Course already exists or input is empty!');
+      }
+    });
+
+    // Initial render
+    renderCourses();
+  </script>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

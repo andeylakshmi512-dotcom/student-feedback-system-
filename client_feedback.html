@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Feedback | Student Feedback System</title>
+  <link rel="stylesheet" href="../css/style.css" />
+</head>
+<body>
+  <nav>
+    <ul>
+      <li><a href="student-login.html">Student Login</a></li>
+      <li><a href="client_feedback.html">Feedback</a></li>
+      <li><a href="client_about.html">About</a></li>
+      <li><a href="client_courses.html">Courses</a></li>
+      <li><a href="client_contact.html">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main class="container">
+    <h1>Student Feedback Form</h1>
+    <form action="#" method="POST">
+      <label for="name">Name:</label><br/>
+      <input type="text" id="name" name="name" required /><br/><br/>
+
+      <label for="email">Email:</label><br/>
+      <input type="email" id="email" name="email" required /><br/><br/>
+
+      <label for="course">Course:</label><br/>
+      <select id="course" name="course" required>
+        <option value="">--Select a course--</option>
+        <option value="WT">web technology</option>
+        <option value="DS">data structures</option>
+        <option value="PS">probability & statistics</option>
+        <option value="DBMS">database</option>
+        <option value="AJT">java</option>
+
+      </select><br/><br/>
+
+      <label for="feedback">Feedback:</label><br/>
+      <textarea id="feedback" name="feedback" rows="5" required></textarea><br/><br/>
+
+      <button type="submit">Submit Feedback</button>
+    </form>
+  </main>
+
+  <footer>
+    <p>&copy; 2025 Marwadi University. All rights reserved.</p>
+  </footer>
+</body>
+</html>
